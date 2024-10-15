@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout  # ดึงโค้ดจาก GitHub
+      - run:
+          name: Test HTML file
+          command: ls -l  # แค่ตรวจสอบว่าไฟล์มีอยู่ในโปรเจ็กต์หรือไม่
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
