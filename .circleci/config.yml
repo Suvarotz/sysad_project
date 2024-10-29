@@ -34,6 +34,19 @@ jobs:
           name: Deploy application
           command: ./deploy_script.sh
 
+  start_ngrok:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - run:
+          name: Install Ngrok
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y ngrok
+      - run:
+          name: Start Ngrok
+          command: ngrok http 3000  # แทนที่ 3000 ด้วยพอร์ตที่แอปพลิเคชันรันอยู่
+
 workflows:
   version: 2
   deploy_flow:
@@ -45,3 +58,6 @@ workflows:
       - deploy:
           requires:
             - build
+      - start_ngrok:  # เริ่ม Ngrok หลังจาก deploy
+          requires:
+            - deploy
