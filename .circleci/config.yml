@@ -50,7 +50,7 @@ jobs:
             rm ngrok.zip
       - run:
           name: Start Ngrok
-          command: ngrok http 3000  # แทนที่ 3000 ด้วยพอร์ตที่แอปพลิเคชันรันอยู่
+          command: ngrok http 3000  
 
 workflows:
   version: 2
