@@ -1,12 +1,15 @@
 {
-  "name": "sysad_project",
+  "name": "my-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a sample project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'Building project...'",
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "dependencies": {
+    "express": "^4.17.1" 
+  },
+  "author": "Your Name",
   "license": "ISC"
 }
