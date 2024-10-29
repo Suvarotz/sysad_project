@@ -39,24 +39,15 @@ jobs:
       - image: circleci/node:14
     steps:
       - run:
-          name: Update sources.list for Debian Stretch
-          command: |
-            echo "deb http://archive.debian.org/debian/ stretch main" | sudo tee /etc/apt/sources.list
-            echo "deb http://archive.debian.org/debian-security/ stretch/updates main" | sudo tee -a /etc/apt/sources.list
-            echo "Acquire::Check-Valid-Until false;" | sudo tee /etc/apt/apt.conf.d/10disable-check-valid-until
-      - run:
-          name: Update package lists
-          command: sudo apt-get update
-      - run:
           name: Install dependencies
-          command: sudo apt-get install -y wget unzip
+          command: sudo apt-get update && sudo apt-get install -y wget unzip
       - run:
           name: Install Ngrok
           command: |
-            wget https://bin.equinox.io/c/111111/ngrok-stable-linux-amd64.zip # แก้ไข URL ให้เป็นเวอร์ชันล่าสุดของ Ngrok
-            unzip ngrok-stable-linux-amd64.zip
+            wget https://bin.equinox.io/c/111111/ngrok-stable-linux-amd64.zip -O ngrok.zip
+            unzip ngrok.zip
             sudo mv ngrok /usr/local/bin
-            rm ngrok-stable-linux-amd64.zip
+            rm ngrok.zip
       - run:
           name: Start Ngrok
           command: ngrok http 3000  # แทนที่ 3000 ด้วยพอร์ตที่แอปพลิเคชันรันอยู่
