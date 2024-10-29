@@ -3,7 +3,7 @@
 echo "Starting deployment..."
 
 # ตรวจสอบการ deploy
-if scp -r ./dist suvarot@localhost:/var/www/myapp; then
+if scp -r ./dist suvarot@localhost:3000/var/www/myapp; then
     echo "Deployment complete!"
 else
     echo "Deployment failed!"
