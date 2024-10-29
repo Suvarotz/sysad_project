@@ -26,6 +26,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set execute permission
+          command: chmod +x deploy_script.sh  # ตั้งค่าสิทธิ์การรันให้กับสคริปต์
+      - run:
           name: Deploy application
           command: ./deploy_script.sh  # ใช้สคริปต์ deploy ที่คุณเตรียมไว้
 
