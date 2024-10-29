@@ -3,9 +3,9 @@ version: 2.1
 jobs:
   checkout_code:
     docker:
-      - image: circleci/node:14  # เลือกภาพ Docker ตามที่ใช้
+      - image: circleci/node:14
     steps:
-      - checkout  # ดึงโค้ดจาก Git
+      - checkout
       - run: echo "Code checked out"
 
   build:
@@ -15,10 +15,10 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install  # ติดตั้ง dependency
+          command: npm install
       - run:
           name: Run build
-          command: npm run build  # สั่ง build
+          command: npm run build
 
   deploy:
     docker:
@@ -27,10 +27,10 @@ jobs:
       - checkout
       - run:
           name: Set execute permission
-          command: chmod +x deploy_script.sh  # ตั้งค่าสิทธิ์การรันให้กับสคริปต์
+          command: chmod +x deploy_script.sh
       - run:
           name: Deploy application
-          command: ./deploy_script.sh  # ใช้สคริปต์ deploy ที่คุณเตรียมไว้
+          command: ./deploy_script.sh
 
 workflows:
   version: 2

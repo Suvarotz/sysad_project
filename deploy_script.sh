@@ -2,10 +2,10 @@
 
 echo "Starting deployment..."
 
-# ตรวจสอบการ deploy
-if scp -r ./dist suvarot@127.0.0.1:/var/www/myapp; then
-    echo "Deployment complete!"
-else
-    echo "Deployment failed!"
-    exit 1
-fi 
+# สร้าง Docker image
+docker build -t myapp .
+
+# รัน Docker container
+docker run -d -p 3000:3000 myapp
+
+echo "Deployment complete!"
