@@ -1,16 +1,42 @@
 version: 2.1
+
 jobs:
+  checkout_code:
+    docker:
+      - image: circleci/node:14  # เลือกภาพ Docker ตามที่ใช้
+    steps:
+      - checkout  # ดึงโค้ดจาก Git
+      - run: echo "Code checked out"
+
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:14
     steps:
-      - checkout  # ดึงโค้ดจาก GitHub
+      - checkout
       - run:
-          name: Test HTML file
-          command: ls -l  # แค่ตรวจสอบว่าไฟล์มีอยู่ในโปรเจ็กต์หรือไม่
+          name: Install dependencies
+          command: npm install  # ติดตั้ง dependency
+      - run:
+          name: Run build
+          command: npm run build  # สั่ง build
+
+  deploy:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run:
+          name: Deploy application
+          command: ./deploy_script.sh  # ใช้สคริปต์ deploy ที่คุณเตรียมไว้
 
 workflows:
   version: 2
-  build_and_test:
+  deploy_flow:
     jobs:
-      - build
+      - checkout_code
+      - build:
+          requires:
+            - checkout_code
+      - deploy:
+          requires:
+            - build
