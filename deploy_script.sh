@@ -6,6 +6,6 @@ echo "Starting deployment..."
 docker build -t myapp .
 
 # รัน Docker container
-docker run -d -p 3000:3000 myapp
+docker run -d -p 192.168.1.100:3000:3000 myapp
 
 echo "Deployment complete!"

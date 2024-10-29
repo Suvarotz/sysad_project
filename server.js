@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join('/var/www/myapp', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// เปลี่ยนการฟังพอร์ตเป็น 0.0.0.0 เพื่อให้เข้าถึงได้จาก IP อื่น ๆ
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on http://192.168.1.100:${PORT}`);
 });
