@@ -14,4 +14,4 @@ RUN npm install
 COPY . .
 
 # สั่งรันแอปพลิเคชัน
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]

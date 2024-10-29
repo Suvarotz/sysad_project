@@ -6,10 +6,18 @@ echo "Starting deployment..."
 docker build -t myapp .
 
 # รัน Docker container
-docker run -d -p 3000:3000 myapp
+container_id=$(docker run -d -p 3000:3000 myapp)
 
 # รอให้แอพพลิเคชั่นเริ่มทำงาน
-sleep 5  # หรือใช้ loop เพื่อตรวจสอบว่า port 3000 เปิดอยู่
+sleep 5
+
+# ตรวจสอบสถานะของ container
+if [ "$(docker ps -q -f id=$container_id)" ]; then
+    echo "Container is running."
+else
+    echo "Container is not running."
+    exit 1
+fi
 
 # ตรวจสอบสถานะของแอพพลิเคชั่น
 if curl -f http://localhost:3000; then
