@@ -5,7 +5,7 @@ echo "Starting deployment..."
 # ล็อกอินเข้า Docker Hub
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-# สร้าง Docker image
+# สร้าง Docker imag
 docker build -t myapp .
 
 # Tag Docker image สำหรับ push
