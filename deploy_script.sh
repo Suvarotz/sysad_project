@@ -9,7 +9,8 @@ docker build -t myapp .
 container_id=$(docker run -d -p 3000:3000 myapp)
 
 # รอให้แอพพลิเคชั่นเริ่มทำงาน
-sleep 5
+sleep 10
+
 
 # ตรวจสอบสถานะของ container
 if [ "$(docker ps -q -f id=$container_id)" ]; then
@@ -20,7 +21,7 @@ else
 fi
 
 # ตรวจสอบสถานะของแอพพลิเคชั่น
-if curl -f http://localhost:3000; then
+if curl -f http://127.0.0.1:3000; then
     echo "App is running successfully."
 else
     echo "App failed to start."
