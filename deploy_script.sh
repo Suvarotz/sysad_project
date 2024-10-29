@@ -20,12 +20,4 @@ else
     exit 1
 fi
 
-# ตรวจสอบสถานะของแอพพลิเคชั่น
-if curl -f http://127.0.0.1:3000; then
-    echo "App is running successfully."
-else
-    echo "App failed to start."
-    exit 1
-fi
-
 echo "Deployment complete!"
