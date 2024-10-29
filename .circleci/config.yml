@@ -34,24 +34,6 @@ jobs:
           name: Deploy application
           command: ./deploy_script.sh
 
-  start_ngrok:
-    docker:
-      - image: circleci/node:14
-    steps:
-      - run:
-          name: Install dependencies
-          command: sudo apt-get update && sudo apt-get install -y wget unzip
-      - run:
-          name: Install Ngrok
-          command: |
-            wget https://bin.equinox.io/c/111111/ngrok-stable-linux-amd64.zip -O ngrok.zip
-            unzip ngrok.zip
-            sudo mv ngrok /usr/local/bin
-            rm ngrok.zip
-      - run:
-          name: Start Ngrok
-          command: ngrok http 3000  
-
 workflows:
   version: 2
   deploy_flow:
@@ -63,6 +45,3 @@ workflows:
       - deploy:
           requires:
             - build
-      - start_ngrok:  # เริ่ม Ngrok หลังจาก deploy
-          requires:
-            - deploy
