@@ -17,7 +17,7 @@ docker push "$DOCKER_USERNAME/myapp:latest"
 # รัน Docker container
 container_id=$(docker run -d -p 3000:3000 myapp)
 
-# ตรวจสอบสถานะของ container
+# ตรวจสอบสถานะของ containers
 if [ "$(docker ps -q -f id=$container_id)" ]; then
     echo "Container is running."
 else
