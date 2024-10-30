@@ -20,7 +20,7 @@ jobs:
           name: Run build
           command: npm run build
 
-  deploy:
+  push:
     docker:
       - image: circleci/node:14
     steps:
@@ -29,10 +29,10 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Set execute permission
-          command: chmod +x deploy_script.sh
+          command: chmod +x push_script.sh
       - run:
-          name: Deploy application
-          command: ./deploy_script.sh
+          name: push application
+          command: ./push_script.sh
 
 workflows:
   version: 2
